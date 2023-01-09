@@ -1,50 +1,28 @@
-import os
-
-from framework.model.pages import practice_form
+from framework.model import app
+from framework.model.data.user import User
 
 
 def test_student_registration_form():
-    practice_form.given_opened()
+    user = User(first_name='Oleg',
+                last_name='Malyshev',
+                email='oleg@test.ru',
+                gender='Male',
+                phone='9177121162',
+                birthday_year='1985',
+                birthday_month='May',
+                birthday_day=11,
+                subject='English',
+                hobby='Sports',
+                image='img.png',
+                address='My best address',
+                state='NCR',
+                city='Delhi')
 
-    # WHEN
-    practice_form.type_firstname('World')
-    practice_form.type_lastname('Peace')
-    practice_form.type_email('qwe@mail.com')
+    app.practice_page.open()
+    app.practice_page.fill_data(user)
+    app.practice_page.submit()
+    app.practice_page.assert_fields(user)
 
-    practice_form.select_gender('Male')
 
-    practice_form.type_phone_number('9177121162')
 
-    practice_form.click_on_datepicker()
-    practice_form.pick_month('April')
-    practice_form.pick_year('1986')
-    practice_form.pick_day(16)
 
-    practice_form.type_subject('English')
-
-    practice_form.select_hobby('Sports')
-
-    practice_form.scroll_to_address()
-    practice_form.type_address('Some address')
-
-    practice_form.upload_picture('img.png')
-
-    practice_form.select_state('NCR')
-    practice_form.select_city('Delhi')
-
-    practice_form.submit()
-
-    # THEN
-
-    practice_form.assert_fields(
-            'World Peace',
-            'qwe@mail.com',
-            'Male',
-            '9177121162',
-            '16 April,1986',
-            'English',
-            'Sports',
-            'img.png',
-            'Some address',
-            'NCR Delhi'
-    )
