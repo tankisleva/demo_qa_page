@@ -1,4 +1,4 @@
-from selene import have
+from selene import have, command
 from selene.support.shared import browser
 from framework.model.controls import dropdown, datepicker, radiobutton, checkbox
 from framework.model.data.user import User
@@ -31,6 +31,12 @@ class PracticePage:
 
     def open(self):
         browser.open('/automation-practice-form')
+        return self
+
+    def remove_add(self):
+        ads = browser.all('[id^=google_ads_][id$=container__]')
+        if ads.should(have.size_less_than_or_equal(3)):
+            ads.perform(command.js.remove)
         return self
 
     def submit(self):
