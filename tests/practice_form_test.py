@@ -19,7 +19,7 @@ def test_student_registration_form():
                 city='Delhi')
 
     app.practice_page.open()
-    app.practice_page.remove_add()
+    app.practice_page.remove_ad()
     app.practice_page.fill_data(user)
     app.practice_page.submit()
     app.practice_page.assert_fields(user)

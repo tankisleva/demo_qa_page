@@ -33,7 +33,7 @@ class PracticePage:
         browser.open('/automation-practice-form')
         return self
 
-    def remove_add(self):
+    def remove_ad(self):
         ads = browser.all('[id^=google_ads_][id$=container__]')
         if ads.should(have.size_less_than_or_equal(3)):
             ads.perform(command.js.remove)
