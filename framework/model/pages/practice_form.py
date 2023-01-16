@@ -1,9 +1,16 @@
+
+
 from selene import have, command
 from selene.support.shared import browser
-from framework.model.controls import dropdown, datepicker, radiobutton, checkbox
+from framework.model.controls import dropdown, datepicker, radiobutton
+from framework.model.controls.datepicker import DataPicker
+from framework.model.controls.dropdown import DropDown
+from framework.model.controls.radiobutton import RadioButton
+from framework.model.controls.checkbox import Checkbox
 from framework.model.data.user import User
 from framework.utils import path_to_file
-from framework.utils.scroll import scroll_to
+from framework.utils.path_to_file import Path
+from framework.utils.scroll import Scroll
 
 
 class PracticePage:
@@ -12,21 +19,29 @@ class PracticePage:
         browser.element('#firstName').type(user.first_name)
         browser.element('#lastName').type(user.last_name)
         browser.element('#userEmail').type(user.email)
-        radiobutton.select_gender('[name=gender]', user.gender)
+        radio = RadioButton('[name=gender]')
+        radio.select_gender(user.gender)
         browser.element('#userNumber').type(user.phone)
         browser.element('#dateOfBirthInput').click()
         browser.element('.react-datepicker__month-select').click()
-        datepicker.select_date('.react-datepicker__month-select', user.birthday_month)
+        month = DataPicker('.react-datepicker__month-select')
+        month.select_date(user.birthday_month)
         browser.element('.react-datepicker__year-select').click()
-        datepicker.select_date('.react-datepicker__year-select', user.birthday_year)
+        year = DataPicker('.react-datepicker__year-select')
+        year.select_date(user.birthday_year)
         browser.element(f'.react-datepicker__day--0{user.birthday_day}').click()
         browser.element('#subjectsInput').type(user.subject).press_enter()
-        scroll_to('#currentAddress')
+        scroll = Scroll('#currentAddress')
+        scroll.scroll_to()
         browser.element('#currentAddress').type(user.address)
-        checkbox.check_hobby('[for^=hobbies-checkbox]', user.hobby)
-        path_to_file.create_path('#uploadPicture', user.image)
-        dropdown.select('#state', by_text=user.state)
-        dropdown.select('#city', by_text=user.city)
+        checkBox = Checkbox('[for^=hobbies-checkbox]')
+        checkBox.check_hobby(user.hobby)
+        path = Path('#uploadPicture')
+        path.attach_file(user.image)
+        state = DropDown('#state')
+        city = DropDown('#city')
+        state.select(by_text=user.state)
+        city.select(by_text=user.city)
         return self
 
     def open(self):
