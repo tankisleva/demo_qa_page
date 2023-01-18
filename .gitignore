@@ -132,3 +132,4 @@ dmypy.json
 /.idea/misc.xml
 /.idea/demo_qa_page.iml
 /.idea/
+/tests/allure-results
