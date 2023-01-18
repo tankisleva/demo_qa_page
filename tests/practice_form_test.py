@@ -24,9 +24,9 @@ def test_student_registration_form():
         app.practice_page.open()
     with allure.step("Remove ad"):
         app.practice_page.remove_ad()
-    with allure.step("Fill form with {user}"):
+    with allure.step("Fill form with"):
         app.practice_page.fill_data(user)
     with allure.step("Submit form"):
         app.practice_page.submit()
-    with allure.step("Check fields for {user}"):
+    with allure.step("Check fields for"):
         app.practice_page.assert_fields(user)
