@@ -1,5 +1,3 @@
-
-
 from selene import have, command
 from selene.support.shared import browser
 from framework.model.controls import dropdown, datepicker, radiobutton
@@ -45,7 +43,7 @@ class PracticePage:
         return self
 
     def open(self):
-        browser.open('/automation-practice-form')
+        browser.open("https://demoqa.com/automation-practice-form")
         return self
 
     def remove_ad(self):
@@ -57,6 +55,7 @@ class PracticePage:
     def submit(self):
         browser.element('#submit').press_enter()
         return self
+
 
     def assert_fields(self, user: User):
         browser.element('.table').all('td').even.should(have.texts(

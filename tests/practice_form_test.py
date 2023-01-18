@@ -1,3 +1,5 @@
+import allure
+
 from framework.model import app
 from framework.model.data.user import User
 
@@ -18,12 +20,13 @@ def test_student_registration_form():
                 state='NCR',
                 city='Delhi')
 
-    app.practice_page.open()
-    app.practice_page.remove_ad()
-    app.practice_page.fill_data(user)
-    app.practice_page.submit()
-    app.practice_page.assert_fields(user)
-
-
-
-
+    with allure.step("Open page practice-form"):
+        app.practice_page.open()
+    with allure.step("Remove ad"):
+        app.practice_page.remove_ad()
+    with allure.step("Fill form with {user}"):
+        app.practice_page.fill_data(user)
+    with allure.step("Submit form"):
+        app.practice_page.submit()
+    with allure.step("Check fields for {user}"):
+        app.practice_page.assert_fields(user)
