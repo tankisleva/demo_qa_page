@@ -4,7 +4,7 @@ from framework.model import app
 from framework.model.data.user import User
 
 
-def test_student_registration_form(setup_browser):
+def test_student_registration_form():
     user = User(first_name='Oleg',
                 last_name='Malyshev',
                 email='oleg@test.ru',
