@@ -28,5 +28,5 @@ def test_student_registration_form():
         app.practice_page.fill_data(user)
     with allure.step("Submit form"):
         app.practice_page.submit()
-    with allure.step("Check fields for"):
+    with allure.step("Check fields"):
         app.practice_page.assert_fields(user)
