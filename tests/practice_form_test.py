@@ -1,3 +1,5 @@
+from time import sleep
+
 import allure
 
 from framework.model import app
@@ -22,6 +24,7 @@ def test_student_registration_form():
 
     with allure.step("Open page practice-form"):
         app.practice_page.open()
+    sleep(3)
     with allure.step("Remove ad"):
         app.practice_page.remove_ad()
     with allure.step("Fill form with"):
